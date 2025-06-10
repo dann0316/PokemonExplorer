@@ -3,5 +3,9 @@
 }
 
 .link {
-  @apply bg-[#938cf6] text-white px-6 py-3 rounded-lg text-2xl font-semibold border-[2px] border-[#938cf6] uppercase hover:bg-transparent hover:text-[#efd467] hover:border-[#efd467] transition-all duration-300;
+  @apply bg-[#938cf6] text-white px-6 py-3 rounded-lg text-2xl font-semibold border-[2px] border-[#938cf6] hover:bg-transparent hover:text-[#efd467] hover:border-[#efd467] transition-all duration-300;
+}
+
+.page-container {
+  @apply w-full h-screen flex flex-col justify-center items-center;
 }

@@ -4,8 +4,6 @@ import PokemonList from './pages/PokemonList';
 import SpeciesList from './pages/SpeciesList';
 import SpeciesOverview from './pages/SpeciesOverview';
 
-
-
 const routes = [
     { path: "/", element: <Home /> },
     { path: "/species", element: <SpeciesList /> },
