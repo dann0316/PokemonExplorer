@@ -10,7 +10,7 @@ const Breadcrumb = () => {
     const pathnames = location.pathname.split("/").filter(Boolean);
 
     // useParams로 speicesID, pokemonId 추출
-    const { pokemonId, } = useParams();
+    const pokemonId = useParams().pokemonId ?? pathnames[3];
 
     // useParams가 speciesId를 제대로 못잡아서 따로 추출, pathnames[1]까지
     const speciesId = useParams().speciesId ?? pathnames[1];
@@ -31,7 +31,7 @@ const Breadcrumb = () => {
                 );
                 setSpeciesName(res.data.name);
             } catch {
-                setSpeciesName("Unknown Species");
+                setSpeciesName("Which Species?");
             }
         };
 
@@ -43,7 +43,7 @@ const Breadcrumb = () => {
                 );
                 setPokemonName(res.data.name);
             } catch {
-                setPokemonName("Unknown Pokemon");
+                setPokemonName("Which Pokemon?");
             }
         };
 
@@ -70,6 +70,7 @@ const Breadcrumb = () => {
             breadcrumbs.push({ name: "Species List", path: "/species" });
 
             // speciesId 까지 있으면
+            // if(speciesId) {}
             if (!isNaN(Number(pathnames[1]))) {
                 
                 //
@@ -82,16 +83,17 @@ const Breadcrumb = () => {
                     name: speciesName || `${speciesId}`,
                     path: `/species/${speciesId}`
                 })
-                // console.log(speciesId);
 
-                //
+                // includes 흠
                 if (pathnames.includes("pokemons")) {
                     breadcrumbs.push({
                         name: "Pokemon List",
                         path: `/species/${speciesId}/pokemons`,
                     });
 
-                    if (pokemonId) {
+                    // 또 못잡음 useParams가 
+                    // if (pokemonId) {
+                    if(!isNaN(Number(pathnames[3]))) {
                         breadcrumbs.push({
                             name: pokemonName || `Pokemon #${pokemonId}`,
                             path: location.pathname,
@@ -103,7 +105,7 @@ const Breadcrumb = () => {
     }
 
     return (
-        <nav className="fixed top-0 bg-[white] justify-center items-center border- flex w-full overflow-hidden rounded text-white text-sm font-medium">
+        <nav className="justify-center items-center border- flex w-full overflow-hidden rounded text-white text-sm font-medium">
             {breadcrumbs.map((crumb, index) => {
 
 

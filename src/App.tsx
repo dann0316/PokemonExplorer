@@ -4,7 +4,8 @@
 import './App.css'
 import { useRoutes } from 'react-router-dom'
 import routes from './routes'
-import Breadcrumb from './components/Breadcrumb';
+import Header from './components/Header'
+import ScrollToTop from './components/ScrollTop';
 
 function App() {
   
@@ -12,10 +13,11 @@ function App() {
   
   return (
     <div className='flex flex-col gap-10 items-center justify-center'>
-      <Breadcrumb />
+      <Header />
       <div>
         {element}
       </div>
+      <ScrollToTop />
     </div>
   )
 }

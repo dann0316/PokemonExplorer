@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import type { SpeciesType } from "../types/pokemon.type";
-import BackButton from "../components/BackButton";
 
 const SpeciesList = () => {
     // 종 state arr
@@ -40,18 +39,14 @@ const SpeciesList = () => {
     }, [offset]);
 
     return (
-        <div className="page-container pt-16">
-
+        <div className="page-container">
+            
             <div className="w-full relative flex justify-center items-center">
 
                 <h1 className="text-2xl font-bold mb-4">
                     Pokemon Species List
                 </h1>
 
-                <div className="absolute right-20">
-                    <BackButton />
-                </div>
-                
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">

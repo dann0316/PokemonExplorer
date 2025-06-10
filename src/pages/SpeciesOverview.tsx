@@ -62,13 +62,16 @@ export default function SpeciesOverview() {
     // 로딩 UI
     if (!species)
         return (
-            <div className="page-container">
-                <img
-                    src={bg}
-                    alt="bg"
-                    className="w-[10rem] drop-shadow-2xl animate-bounce"
-                />
-            </div>
+            <main className="page-container">
+                <div role="status" aria-label="포켓몬 정보 로딩 중">
+                    <img
+                        src={bg}
+                        alt="로딩 중"
+                        className="w-[10rem] drop-shadow-2xl animate-bounce"
+                    />
+                    <span className="sr-only">포켓몬 정보를 불러오는 중입니다...</span>
+                </div>
+            </main>
         );
 
     // names.name 한국어
@@ -77,7 +80,7 @@ export default function SpeciesOverview() {
         species.names.find((n) => n.language.name === "en")?.name;
         
     return (
-        <div className="page-container">
+        <main className="page-container">
             <h1 className="text-3xl font-bold mb-2">
                 {koreanName} (#{species.id})
                 <img src={pokemonImg} alt="포켓몬 이미지" />
@@ -85,8 +88,7 @@ export default function SpeciesOverview() {
             <p className="text-gray-600 mb-4"> 색: {species.color.name}</p>
             <p className="text-gray-600 mb-4"> 형태: {species.shape.name}</p>
             <p className="text-gray-600 mb-4">
-                Happiness: {species.base_happiness} | Hatch Steps:{" "}
-                {(species.hatch_counter + 1) * 256}
+                행복도: {species.base_happiness}
             </p>
             <p className="text-gray-600 mb-4">
                 전설 여부:{" "}
@@ -112,6 +114,6 @@ export default function SpeciesOverview() {
                     이 종의 포켓몬 보기 →
                 </Link>
             </div>
-        </div>
+        </main>
     );
 }

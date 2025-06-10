@@ -36,7 +36,7 @@ const PokemonList = () => {
     }, [speciesId]);
 
     return (
-        <div className="p-8">
+        <div className="page-container">
             <h1 className="text-3xl font-bold mb-6">
                 {speciesName} - Pokémon Variants
             </h1>

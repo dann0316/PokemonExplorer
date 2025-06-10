@@ -1,13 +1,23 @@
-import { useNavigate } from "react-router-dom"
-import backButton from '../assets/backButton.png'
+import { useNavigate } from "react-router-dom";
 
 const BackButton = () => {
-    
     const navigate = useNavigate();
 
     return (
-        <img src={backButton} alt="backButton" className="w-10 cursor-pointer" onClick={() => navigate(-1)}/>
-    )
-}
+        <button
+            className="group bg-[#ffde00] text-[#1f1e0a] h-28 w-44 flex items-center justify-center border-4 border-[#ffde00] hover:bg-white hover-apply"
+            style={{
+                clipPath:
+                    "polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40%)",
+            }}
+            onClick={() => navigate(-1)}
+            aria-label="이전 페이지로 돌아가기"
+        >
+            <div className="w-[60%] border-4 border-[#1f1e0a] rounded-full text-xl font-extrabold group-hover:border-[#ffde00] group-hover:text-[#ffde00] hover-apply">
+                go back
+            </div>
+        </button>
+    );
+};
 
 export default BackButton;

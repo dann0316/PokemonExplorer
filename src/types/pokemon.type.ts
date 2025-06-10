@@ -27,3 +27,15 @@ export interface SpeciesOverviewType {
         };
     }[];
 }
+
+export interface Variety {
+    pokemon: {
+        name: string;
+        url: string;
+    };
+}
+
+export interface SpeciesResponse {
+    name: string;
+    varieties: Variety[];
+}

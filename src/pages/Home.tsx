@@ -6,7 +6,7 @@ import bg from "../assets/bg.png";
 const Home = () => {
 
     return (
-        <div className="page-container">
+        <main className="page-container">
             <img
                 src={bg}
                 alt="bg"
@@ -22,7 +22,7 @@ const Home = () => {
                     Speceis List
                 </Link>
             </div>
-        </div>
+        </main>
     );
 };
 
