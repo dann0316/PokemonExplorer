@@ -6,8 +6,10 @@ import { useRoutes } from 'react-router-dom'
 import routes from './routes'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollTop';
+import { useTrackClick } from './hooks/useTrackClick'
 
 function App() {
+  useTrackClick();
   
   const element = useRoutes(routes);
   

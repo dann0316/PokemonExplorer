@@ -91,7 +91,7 @@ const Breadcrumb = () => {
                         path: `/species/${speciesId}/pokemons`,
                     });
 
-                    // 또 못잡음 useParams가 
+                    // 또 못잡음 useParams가 Routes - Route 구조로 바꿔야하나
                     // if (pokemonId) {
                     if(!isNaN(Number(pathnames[3]))) {
                         breadcrumbs.push({
