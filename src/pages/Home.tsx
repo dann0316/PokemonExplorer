@@ -3,7 +3,7 @@ import bg from "../assets/bg.png";
 
 const Home = () => {
     return (
-        <main className="page-container py-40 md:py-52">
+        <main className="page-container lg:!py-52">
             
             {/* img section */}
             <div className="w-full flex justify-center items-center">

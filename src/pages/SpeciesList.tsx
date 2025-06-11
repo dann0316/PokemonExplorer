@@ -1,47 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import type { SpeciesType } from "../types/pokemon.type";
-import bg from "../assets/bg.png";
-import CommonListPage from "./CommonListPage";
+import CommonListPage from "./commonPage/CommonListPage";
 import LoadingUI from "../components/LoadingUI";
+import { useSpeicesListData } from "../hooks/useSpeciesListData";
 
 const SpeciesList = () => {
-    // 종 state arr
-    const [speciesList, setSpeciesList] = useState<SpeciesType[]>([]);
 
-    // offset state
-    const [offset, setOffset] = useState<number>(0);
+    const { isLoading, speciesList, setOffset, error } = useSpeicesListData();
 
-    // 데이터 로딩 state
-    const [isLoading, setIsLoading] = useState(false);
+    // speciesList 못옴(error)
+    if (error)
+        return <div className="page-container text-red-500">{error.message}</div>;
 
-    // 포켓몬 종 불러오는 함수 limit 20, offset button 클릭 시 +20
-    const fetchSpecies = async () => {
-
-        // 요청하면 loading state true
-        setIsLoading(true);
-
-        // 요청
-        try {
-            const res = await axios.get(
-                `https://pokeapi.co/api/v2/pokemon-species?limit=20&offset=${offset}`
-            );
-
-            // speciesList state에 새 데이터 추가
-            setSpeciesList((arr) => [...arr, ...res.data.results]);
-        } catch (err) {
-            console.error("Error", err);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    // dependency - offset state
-    useEffect(() => {
-        fetchSpecies();
-    }, [offset]);
-
-    if(!speciesList) return <LoadingUI />;
+    // speciesList 오는 중(loading)
+    if (!speciesList) return <LoadingUI />;
 
     return (
         <CommonListPage

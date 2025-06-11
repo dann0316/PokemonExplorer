@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { CommonListPagePropsType } from '../types/pokemon.type'
+import type { CommonListPagePropsType } from '../../types/pokemon.type'
 
 const CommonListPage = ({
     title,

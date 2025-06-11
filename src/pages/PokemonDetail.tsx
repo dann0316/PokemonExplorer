@@ -1,33 +1,22 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import type { PokemonDetailDataType } from "../types/pokemon.type";
-import CommonOverviewPage from "./CommonOverviewPage";
+import CommonOverviewPage from "./commonPage/CommonOverviewPage";
 import LoadingUI from "../components/LoadingUI";
+import { useRouteData } from '../hooks/useRouteData';
+import { usePokemonData } from "../hooks/usePokemonData";
 
 const PokemonDetail = () => {
-    const { pokemonId } = useParams();
-    const [pokemon, setPokemon] = useState<PokemonDetailDataType | null>(null);
 
-    useEffect(() => {
-        const fetchPokemon = async () => {
-            try {
-                const res = await axios.get<PokemonDetailDataType>(
-                    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-                );
-                setPokemon(res.data);
-            } catch (error) {
-                console.error("Error fetching pokemon detail", error);
-            }
-        };
+    // 커스텀 훅으로 가져오기
+    const { pokemonId } = useRouteData();
 
-        if (pokemonId) fetchPokemon();
-    }, [pokemonId]);
+    // 커스텀 훅으로 가져오기
+    const { pokemon, error } = usePokemonData(pokemonId);
 
-    if (!pokemon)
-        return (
-            <LoadingUI />
-        );
+    // pokemon 못옴(error)
+    if (error)
+        return <div className="page-container text-red-500">{error.message}</div>;
+
+    // species 오는 중(loading)
+    if (!pokemon) return <LoadingUI />;
 
     return (
         <CommonOverviewPage

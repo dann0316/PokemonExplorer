@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { OverviewPagePropsType } from '../types/pokemon.type'
+import type { OverviewPagePropsType } from '../../types/pokemon.type'
 
 const CommonOverviewPage = ({
     loading,

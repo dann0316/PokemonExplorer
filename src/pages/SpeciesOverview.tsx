@@ -1,49 +1,30 @@
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import type { SpeciesOverviewType, OverviewInfoType } from "../types/pokemon.type";
+import type { OverviewInfoType } from "../types/pokemon.type";
 import LoadingUI from "../components/LoadingUI";
-import CommonOverviewPage from "./CommonOverviewPage";
+import CommonOverviewPage from "./commonPage/CommonOverviewPage";
+import { useRouteData } from '../hooks/useRouteData'
+import { useSpeciesOverviewData } from "../hooks/useSpeciesOverviewData";
 
-export default function SpeciesOverview() {
-    // speciesId 추출
-    const { speciesId } = useParams();
+const SpeciesOverview = () => {
+    
+    // 커스텀 훅으로 가져오기
+    const { speciesId } = useRouteData();
 
-    // species state
-    const [species, setSpecies] = useState<SpeciesOverviewType | null>(null);
+    // 커스텀 훅으로 가져오기
+    const { species, error } = useSpeciesOverviewData( speciesId );
 
-    // error state
-    const [error] = useState(null);
-
-    // speciesOverview 요청
-    const fetchSpeciesOverview = async () => {
-        try {
-            const res = await axios.get(
-                `https://pokeapi.co/api/v2/pokemon-species/${speciesId}`
-            );
-
-            setSpecies(res.data);
-        } catch (err) {
-            console.error("Error", err);
-        }
-    };
-
-    useEffect(() => {
-        fetchSpeciesOverview();
-    }, [speciesId]);
-
-    // error UI error 가 나올 구멍이 없는데?
-    // speceis 가 없을 때 -> 못옴(error), 오는 중(이건 어떡함)
+    // speceis 못옴(error)
     if (error)
-        return <div className="page-container text-red-500">{error}</div>;
+        return <div className="page-container text-red-500">{error.message}</div>;
 
-    // species 없을 때 로딩 UI
+    // species 오는 중(loading)
     if (!species) return <LoadingUI />;
 
     // 있으면 렌더링
     // 왜 여기에 해야 species가 있는거지? else 도없는데?
+    
+    // pokeonDetail이랑 이 부분도 너무 똑같음 이것도 commonpage에 빼기 커스텀 훅 위치랑 구조도 너무 비슷한데;
 
-    // names.name 한국어
+    // names.name 한국어로
     const koreanName =
         species.names.find((n) => n.language.name === "ko")?.name ??
         species.names.find((n) => n.language.name === "en")?.name;
@@ -94,3 +75,5 @@ export default function SpeciesOverview() {
         />
     );
 }
+
+export default SpeciesOverview;

@@ -5,6 +5,7 @@ import Breadcrumb from "./Breadcrumb";
 import { useIsMobile } from "../hooks/useIsMobile";
 
 const Header = () => {
+    
     const isMobile = useIsMobile();
 
     return (
@@ -33,7 +34,7 @@ const Header = () => {
             ) : (
 
                 // 데스크탑 Header
-                <div className="w-full pl-7 h-auto flex flex-row justify-between items-center">
+                <div className="w-full pl-7 h-auto flex flex-row justify-between items-center gap-3">
 
                     {/* logo */}
                     <Link to="/">

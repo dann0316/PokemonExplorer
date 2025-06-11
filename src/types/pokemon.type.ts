@@ -1,8 +1,10 @@
+// SpeciesList Type
 export interface SpeciesType {
     name: string;
     url: string;
 }
 
+// ?
 export interface SpeciesOverviewType {
     names: {
         name: string;
@@ -28,7 +30,8 @@ export interface SpeciesOverviewType {
     }[];
 }
 
-export interface Variety {
+// PokemonList Types
+export interface VarietyType {
     is_default: boolean;
     pokemon: {
         name: string;
@@ -36,9 +39,9 @@ export interface Variety {
     };
 }
 
-export interface SpeciesResponse {
+export interface SpeciesResponseType {
     name: string;
-    varieties: Variety[];
+    varieties: VarietyType[];
 }
 
 export interface PokemonType {
@@ -76,7 +79,7 @@ export interface OverviewPagePropsType {
     bottomLink?: { to: string; label: string };
 }
 
-// SpeciesOvervew type
+// SpeciesOvervew Type
 export interface StringInfo {
     label: "색" | "형태" | "전설 여부";
     value: string;
@@ -87,17 +90,9 @@ export interface NumberInfo {
     value: number;
 }
 
-export interface Variety {
-    is_default: boolean;
-    pokemon: {
-        name: string;
-        url: string;
-    };
-}
-
 export interface VarietyInfo {
     label: "포켓몬";
-    value: Variety[] | any[];
+    value: VarietyType[] | any[];
 }
 
 export type OverviewInfoType = StringInfo | NumberInfo | VarietyInfo;
