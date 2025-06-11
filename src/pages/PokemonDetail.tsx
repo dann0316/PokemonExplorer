@@ -5,11 +5,13 @@ import { usePokemonData } from "../hooks/usePokemonData";
 
 const PokemonDetail = () => {
 
-    // 커스텀 훅으로 가져오기
     const { pokemonId } = useRouteData();
 
-    // 커스텀 훅으로 가져오기
     const { pokemon, error } = usePokemonData(pokemonId);
+
+    // 단위 맞추기
+    const pokemonHeight = pokemon?.height ? (pokemon.height / 10) : undefined;
+    const pokemonWeight = pokemon?.weight ? (pokemon.weight / 10) : undefined;
 
     // pokemon 못옴(error)
     if (error)
@@ -26,16 +28,16 @@ const PokemonDetail = () => {
             content={
                 <>
                     <img
+                        loading="lazy"
                         src={pokemon.sprites.front_default}
                         alt={pokemon.name}
                         className="w-40 h-40 mb-4"
                     />
                     <ul className="text-lg space-y-2">
-                        <li>ID: {pokemon.id}</li>
-                        <li>Height: {pokemon.height}</li>
-                        <li>Weight: {pokemon.weight}</li>
+                        <li>키: {pokemonHeight} m</li>
+                        <li>몸무게: {pokemonWeight} kg</li>
                         <li>
-                            Types:{" "}
+                            타입:{" "}
                             {pokemon.types.map((t) => t.type.name).join(", ")}
                         </li>
                     </ul>

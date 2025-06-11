@@ -6,10 +6,8 @@ import { useSpeciesOverviewData } from "../hooks/useSpeciesOverviewData";
 
 const SpeciesOverview = () => {
     
-    // 커스텀 훅으로 가져오기
     const { speciesId } = useRouteData();
 
-    // 커스텀 훅으로 가져오기
     const { species, error } = useSpeciesOverviewData( speciesId );
 
     // speceis 못옴(error)
@@ -23,6 +21,7 @@ const SpeciesOverview = () => {
     // 왜 여기에 해야 species가 있는거지? else 도없는데?
     
     // pokeonDetail이랑 이 부분도 너무 똑같음 이것도 commonpage에 빼기 커스텀 훅 위치랑 구조도 너무 비슷한데;
+    // 커스텀 훅에 중복된 state도 좀 있는데 error 같은거 
 
     // names.name 한국어로
     const koreanName =
@@ -32,13 +31,13 @@ const SpeciesOverview = () => {
     // overview info 배열
     const info: SpeciesOverviewInfoType[] = [
         { label: "색", value: species.color.name },
-        { label: "형태", value: species.shape.name },
+        { label: "타입", value: species.shape.name },
         { label: "행복도", value: species.base_happiness },
         {
             label: "전설 여부",
             value: species.is_legendary ? "전설 포켓몬" : "일반 포켓몬",
         },
-        { label: "포켓몬", value: species.varieties }, // 배열
+        { label: "포켓몬", value: species.varieties },
     ];
 
     return (

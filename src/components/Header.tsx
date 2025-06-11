@@ -23,7 +23,7 @@ const Header = () => {
                     <div className="w-full h-auto pl-7 flex felx-row justify-between items-center">
                         
                         <Link to="/">
-                            <img src={bg} alt="bg" className="min-w-20 w-20 md:w-32 h-auto" />
+                            <img loading="lazy" src={bg} alt="bg" className="min-w-20 w-20 md:w-32 h-auto" />
                         </Link>
 
                         <BackButton />
@@ -39,6 +39,7 @@ const Header = () => {
                     {/* logo */}
                     <Link to="/">
                         <img
+                            loading="lazy"
                             src={bg}
                             alt="bg"
                             className="w-40 h-auto"

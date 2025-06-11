@@ -87,7 +87,7 @@ export interface CommonOverviewPagePropsType {
 
 // SpeciesOvervew Type
 export interface StringInfo {
-    label: "색" | "형태" | "전설 여부";
+    label: "색" | "타입" | "전설 여부";
     value: string;
 }
 

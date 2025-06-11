@@ -8,6 +8,7 @@ const Home = () => {
             {/* img section */}
             <div className="w-full flex justify-center items-center">
                 <img
+                    loading="lazy"
                     src={bg}
                     alt="bg"
                     className="w-80 md:w-[30rem] lg:w-[40rem] drop-shadow-xl md:drop-shadow-2xl animate-bounce"

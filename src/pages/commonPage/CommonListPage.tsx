@@ -43,6 +43,7 @@ const CommonListPage = ({
                     >
                         {isLoading ? (
                             <img
+                                loading="lazy"
                                 src="/assets/bg.png"
                                 alt="loading"
                                 className="w-20 h-auto animate-spin"

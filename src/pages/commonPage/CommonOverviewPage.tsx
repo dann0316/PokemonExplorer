@@ -14,6 +14,7 @@ const CommonOverviewPage = ({
             <main className="page-container">
                 <div role="status" aria-label="로딩 중">
                     <img
+                        loading="lazy"
                         src="/assets/bg.png"
                         alt="로딩 중"
                         className="w-[10rem] drop-shadow-2xl animate-bounce"

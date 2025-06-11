@@ -5,6 +5,7 @@ const LoadingUI = () => {
         <main className="page-container">
                 <div role="status" aria-label="포켓몬 정보 로딩 중">
                     <img
+                        loading="lazy"
                         src={bg}
                         alt="로딩 중"
                         className="w-[10rem] drop-shadow-2xl animate-bounce"
