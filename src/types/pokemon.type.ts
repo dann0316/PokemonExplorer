@@ -1,10 +1,10 @@
-// SpeciesList Type
+// useSpeicesListData Type
 export interface SpeciesType {
     name: string;
     url: string;
 }
 
-// ?
+// useSpeciesOverviewData Type
 export interface SpeciesOverviewType {
     names: {
         name: string;
@@ -30,7 +30,7 @@ export interface SpeciesOverviewType {
     }[];
 }
 
-// PokemonList Types
+// usePokemonListData Types
 export interface VarietyType {
     is_default: boolean;
     pokemon: {
@@ -43,7 +43,9 @@ export interface SpeciesResponseType {
     name: string;
     varieties: VarietyType[];
 }
+// usePokemonListData Types 여기까지
 
+// usePokemonData Type
 export interface PokemonType {
     type: {
         name: string;
@@ -60,7 +62,10 @@ export interface PokemonDetailDataType {
     };
     types: PokemonType[];
 }
+// usePokemonData Type 여기까지
 
+
+// CommonListPage Type
 export interface CommonListPagePropsType {
     title: string;
     items: { name: string; url: string }[];
@@ -70,7 +75,8 @@ export interface CommonListPagePropsType {
     isLoading?: boolean;
 }
 
-export interface OverviewPagePropsType {
+// CommonOverviewPage Type
+export interface CommonOverviewPagePropsType {
     loading: boolean;
     title: string | undefined;
     subtitle?: string;
@@ -95,4 +101,5 @@ export interface VarietyInfo {
     value: VarietyType[] | any[];
 }
 
-export type OverviewInfoType = StringInfo | NumberInfo | VarietyInfo;
+export type SpeciesOverviewInfoType = StringInfo | NumberInfo | VarietyInfo;
+// SpeciesOverviewInfo Type 여기까지

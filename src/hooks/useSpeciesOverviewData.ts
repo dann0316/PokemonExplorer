@@ -8,7 +8,7 @@ export const useSpeciesOverviewData = ( speciesId:string) => {
     const [error, setError] = useState<Error | null>(null);
 
     // species state
-        const [species, setSpecies] = useState<SpeciesOverviewType | null>(null);
+    const [species, setSpecies] = useState<SpeciesOverviewType | null>(null);
 
     // speciesOverview 요청
     const fetchSpeciesOverview = async () => {

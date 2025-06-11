@@ -1,4 +1,4 @@
-import type { OverviewInfoType } from "../types/pokemon.type";
+import type { SpeciesOverviewInfoType } from "../types/pokemon.type";
 import LoadingUI from "../components/LoadingUI";
 import CommonOverviewPage from "./commonPage/CommonOverviewPage";
 import { useRouteData } from '../hooks/useRouteData'
@@ -30,7 +30,7 @@ const SpeciesOverview = () => {
         species.names.find((n) => n.language.name === "en")?.name;
 
     // overview info 배열
-    const info: OverviewInfoType[] = [
+    const info: SpeciesOverviewInfoType[] = [
         { label: "색", value: species.color.name },
         { label: "형태", value: species.shape.name },
         { label: "행복도", value: species.base_happiness },

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { OverviewPagePropsType } from '../../types/pokemon.type'
+import type { CommonOverviewPagePropsType } from '../../types/pokemon.type'
 
 const CommonOverviewPage = ({
     loading,
@@ -8,7 +8,7 @@ const CommonOverviewPage = ({
     data,
     content,
     bottomLink,
-}: OverviewPagePropsType) => {
+}: CommonOverviewPagePropsType) => {
     if (loading || !data)
         return (
             <main className="page-container">
