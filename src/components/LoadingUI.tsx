@@ -8,7 +8,7 @@ const LoadingUI = () => {
                         loading="lazy"
                         src={bg}
                         alt="로딩 중"
-                        className="w-[10rem] drop-shadow-2xl animate-bounce"
+                        className="w-[10rem] drop-shadow-2xl animate-spin"
                     />
                     <span className="sr-only">
                         포켓몬 정보를 불러오는 중입니다...

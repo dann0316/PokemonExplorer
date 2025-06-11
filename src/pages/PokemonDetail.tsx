@@ -31,7 +31,7 @@ const PokemonDetail = () => {
                         loading="lazy"
                         src={pokemon.sprites.front_default}
                         alt={pokemon.name}
-                        className="w-40 h-40 mb-4"
+                        className="w-40 h-40"
                     />
                     <ul className="text-lg space-y-2">
                         <li>키: {pokemonHeight} m</li>

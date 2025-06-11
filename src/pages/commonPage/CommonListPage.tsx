@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { CommonListPagePropsType } from '../../types/pokemon.type'
+import bg from "../../assets/bg.png";
 
 const CommonListPage = ({
     title,
@@ -44,8 +45,8 @@ const CommonListPage = ({
                         {isLoading ? (
                             <img
                                 loading="lazy"
-                                src="/assets/bg.png"
-                                alt="loading"
+                                src={bg}
+                                alt="불러오는 중"
                                 className="w-20 h-auto animate-spin"
                             />
                         ) : (

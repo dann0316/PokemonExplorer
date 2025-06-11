@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { CommonOverviewPagePropsType } from '../../types/pokemon.type'
+import bg from '../../assets/bg.png'
 
 const CommonOverviewPage = ({
     loading,
@@ -15,9 +16,9 @@ const CommonOverviewPage = ({
                 <div role="status" aria-label="로딩 중">
                     <img
                         loading="lazy"
-                        src="/assets/bg.png"
+                        src={bg}
                         alt="로딩 중"
-                        className="w-[10rem] drop-shadow-2xl animate-bounce"
+                        className="w-[10rem] drop-shadow-2xl animate-spin"
                     />
                     <span className="sr-only">불러오는 중입니다...</span>
                 </div>
