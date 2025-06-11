@@ -1,8 +1,9 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import bg from "../assets/bg.png";
-import type { SpeciesOverviewType } from "../types/pokemon.type";
+import type { SpeciesOverviewType, OverviewInfoType } from "../types/pokemon.type";
+import LoadingUI from "../components/LoadingUI";
+import CommonOverviewPage from "./CommonOverviewPage";
 
 export default function SpeciesOverview() {
     // speciesId 추출
@@ -31,26 +32,13 @@ export default function SpeciesOverview() {
         fetchSpeciesOverview();
     }, [speciesId]);
 
-    // error UI
+    // error UI error 가 나올 구멍이 없는데?
+    // speceis 가 없을 때 -> 못옴(error), 오는 중(이건 어떡함)
     if (error)
         return <div className="page-container text-red-500">{error}</div>;
 
     // species 없을 때 로딩 UI
-    if (!species)
-        return (
-            <main className="page-container">
-                <div role="status" aria-label="포켓몬 정보 로딩 중">
-                    <img
-                        src={bg}
-                        alt="로딩 중"
-                        className="w-[10rem] drop-shadow-2xl animate-bounce"
-                    />
-                    <span className="sr-only">
-                        포켓몬 정보를 불러오는 중입니다...
-                    </span>
-                </div>
-            </main>
-        );
+    if (!species) return <LoadingUI />;
 
     // 있으면 렌더링
     // 왜 여기에 해야 species가 있는거지? else 도없는데?
@@ -61,7 +49,7 @@ export default function SpeciesOverview() {
         species.names.find((n) => n.language.name === "en")?.name;
 
     // overview info 배열
-    const info = [
+    const info: OverviewInfoType[] = [
         { label: "색", value: species.color.name },
         { label: "형태", value: species.shape.name },
         { label: "행복도", value: species.base_happiness },
@@ -73,31 +61,36 @@ export default function SpeciesOverview() {
     ];
 
     return (
-        <main className="page-container">
-            <div className="w-2/3 border-2 border-[#183168] p-5 rounded-xl flex flex-col justify-center items-start gap-3">
-                <div className="text-base md:text-lg font-medium">
-                    No.{species.id}
-                </div>
-                <h1 className="text-xl md:text-3xl font-bold">{koreanName}</h1>
-
-                {info.map((item, i) => (
-                    <div key={i} className="text-base md:text-lg font-bold">
-                        {item.label}:{" "}
-                        {item.label !== "포켓몬" ? (
-                            <span className="font-medium">{item.value}</span>
-                        ) : (
-                            <ul>
-                                {item.value.map((v, j) => (
-                                    <li className="font-medium" key={j}>{v.pokemon.name}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                ))}
-                <Link to={`/species/${speciesId}/pokemons`} className="link mt-4 self-center">
-                    이 종의 포켓몬 보기
-                </Link>
-            </div>
-        </main>
+        <CommonOverviewPage
+            loading={!species}
+            title={koreanName}
+            data={species}
+            content={
+                <>
+                    {info.map((item, i) => (
+                        <div key={i} className="text-base md:text-lg font-bold">
+                            {item.label}:{" "}
+                            {item.label !== "포켓몬" ? (
+                                <span className="font-medium">
+                                    {item.value}
+                                </span>
+                            ) : (
+                                <ul>
+                                    {item.value.map((v, j) => (
+                                        <li className="font-medium" key={j}>
+                                            {v.pokemon.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    ))}
+                </>
+            }
+            bottomLink={{
+                to: `/species/${speciesId}/pokemons`,
+                label: "이 종의 포켓몬 보기",
+            }}
+        />
     );
 }
