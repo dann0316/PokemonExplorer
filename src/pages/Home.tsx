@@ -1,27 +1,29 @@
-// src/pages/Home.jsx
 import { Link } from "react-router-dom";
-// import pikachu from "../assets/pikachu.png"; // 있으면 이미지 추가
 import bg from "../assets/bg.png";
 
 const Home = () => {
-
     return (
-        <main className="page-container">
-            <img
-                src={bg}
-                alt="bg"
-                className="w-[40rem] drop-shadow-2xl animate-bounce"
-            />
-            <p className="text-gray-700 text-lg font-extrabold max-w-md mb-8">
-                포켓몬 종을 탐색하고 진화, 형태, 색상, 서식지까지 다양한 정보를 확인해보세요!
-            </p>
-            <div className="flex flex-row gap-5 border border-[#938cf6] p-10 rounded-2xl">
+        <main className="page-container py-40 md:py-52">
             
-                <Link to={`/species`}
-                className="link">
-                    Speceis List
-                </Link>
+            {/* img section */}
+            <div className="w-full flex justify-center items-center">
+                <img
+                    src={bg}
+                    alt="bg"
+                    className="w-80 md:w-[30rem] lg:w-[40rem] drop-shadow-xl md:drop-shadow-2xl animate-bounce"
+                />
             </div>
+
+            {/* title section */}
+            <div>
+                <h2 className="text-[#183168] text-base md:text-xl lg:text-2xl font-extrabold">
+                    {`포켓몬들을 찾아보아요 :)`}
+                </h2>
+            </div>
+
+            <Link to={`/species`} className="link">
+                찾아보기
+            </Link>
         </main>
     );
 };

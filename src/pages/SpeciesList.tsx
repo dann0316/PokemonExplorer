@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import type { SpeciesType } from "../types/pokemon.type";
+import bg from "../assets/bg.png";
 
 const SpeciesList = () => {
     // 종 state arr
@@ -39,38 +40,54 @@ const SpeciesList = () => {
     }, [offset]);
 
     return (
-        <div className="page-container">
-            
-            <div className="w-full relative flex justify-center items-center">
+        <main className="page-container">
 
-                <h1 className="text-2xl font-bold mb-4">
-                    Pokemon Species List
-                </h1>
+            <div className="w-full p-5 border-2 border-[#183168] rounded-xl flex flex-col justify-center items-center gap-7">
 
-            </div>
+                <div className="w-full flex justify-center items-center">
+                    <h1 className="text-2xl font-bold mb-4">
+                        포켓몬 종을 골라보아요 :)
+                    </h1>
+                </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-                {speciesList.map((species, i) => {
-                    const id = species.url.split("/").filter(Boolean).pop();
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+                    {speciesList.map((species, i) => {
+                        const id = species.url.split("/").filter(Boolean).pop();
 
-                    return (
-                        <Link key={i} to={`/species/${id}`} className="link">
-                            No.{id} - {species.name}
-                        </Link>
-                    );
-                })}
-            </div>
+                        return (
+                            <Link
+                                key={i}
+                                to={`/species/${id}`}
+                                className="link"
+                            >
+                                <div className="text-base font-medium">
+                                    No.{id}
+                                </div>
+                                <div>{species.name}</div>
+                            </Link>
+                        );
+                    })}
+                </div>
 
-            <div className="text-center mt-6">
                 <button
                     onClick={() => setOffset((prev) => prev + 20)}
                     disabled={isLoading}
-                    className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
+                    className="bg-[#183168] border-2 border-[#183168] text-white p-8 rounded hover:bg-[white] hover:text-[#183168] hover-apply"
                 >
-                    {isLoading ? "로딩 중..." : "더 보기"}
+                    {isLoading ? (
+                        <img
+                            src={bg}
+                            alt="bg"
+                            className="w-20 h-auto animate-spin"
+                        />
+                    ) : (
+                        "더 보기"
+                    )}
                 </button>
+            
             </div>
-        </div>
+
+        </main>
     );
 };
 

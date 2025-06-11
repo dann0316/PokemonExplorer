@@ -1,7 +1,6 @@
-// src/pages/PokemonDetail.tsx
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import bg from "../assets/bg.png";
 import axios from "axios";
 
 interface PokemonType {
@@ -40,7 +39,20 @@ const PokemonDetail = () => {
         if (pokemonId) fetchPokemon();
     }, [pokemonId]);
 
-    if (!pokemon) return <div className="p-8 text-lg">Loading...</div>;
+    if (!pokemon) return (
+            <main className="page-container">
+                <div role="status" aria-label="포켓몬 정보 로딩 중">
+                    <img
+                        src={bg}
+                        alt="로딩 중"
+                        className="w-[10rem] drop-shadow-2xl animate-bounce"
+                    />
+                    <span className="sr-only">
+                        포켓몬 정보를 불러오는 중입니다...
+                    </span>
+                </div>
+            </main>
+        );
 
     return (
         <div className="page-container">

@@ -5,6 +5,6 @@ export const useTrackClick = () => {
     const location = useLocation();
 
     useEffect (() => {
-        console.log(`현재 경로: ${location.pathname}`);
+        console.log(`클릭한 경로 및 현재 경로: ${location.pathname}`);
     },[location]);
 };

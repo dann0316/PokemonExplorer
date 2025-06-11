@@ -36,18 +36,24 @@ const PokemonList = () => {
     }, [speciesId]);
 
     return (
-        <div className="page-container">
-            <h1 className="text-3xl font-bold mb-6">
-                {speciesName} - Pokémon Variants
-            </h1>
-            <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <main className="page-container">
+
+            <div className="w-full p-5 border-2 border-[#183168] rounded-xl flex flex-col justify-center items-center gap-7">
+
+                <div className="w-full relative flex justify-center items-center">
+                    <h1 className="text-2xl font-bold mb-4">
+                        {speciesName} 중 포켓몬을 골라보아요 :)
+                    </h1>
+                </div>
+
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-5">
                 {varieties.map((v) => {
-                    const id = v.pokemon.url.split("/").filter(Boolean).pop(); // Extract ID from URL
+                    const id = v.pokemon.url.split("/").filter(Boolean).pop();
                     return (
                         <li key={id}>
                             <Link
                                 to={`/species/${speciesId}/pokemons/${id}`}
-                                className="block p-4 border rounded hover:bg-gray-100 text-center"
+                                className="link"
                             >
                                 {v.pokemon.name}
                             </Link>
@@ -55,7 +61,9 @@ const PokemonList = () => {
                     );
                 })}
             </ul>
-        </div>
+            </div>
+
+        </main>
     );
 };
 

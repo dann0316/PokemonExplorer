@@ -11,55 +11,31 @@ export default function SpeciesOverview() {
     // species state
     const [species, setSpecies] = useState<SpeciesOverviewType | null>(null);
 
-    // pokemon img state
-    const [pokemonImg, setPokemonImg] = useState<string | undefined>(undefined);
-
-    // 데이터 로딩 state
-    const [isLoading, setIsLoading] = useState(false);
-
     // error state
     const [error] = useState(null);
 
     // speciesOverview 요청
     const fetchSpeciesOverview = async () => {
-
-      setIsLoading(true);
         try {
             const res = await axios.get(
                 `https://pokeapi.co/api/v2/pokemon-species/${speciesId}`
             );
 
             setSpecies(res.data);
-
         } catch (err) {
             console.error("Error", err);
         }
     };
 
-    // pokemonImg 요청
-    const fetchPokemonImg = async () => {
-
-      setIsLoading(true);
-      try {
-        const res = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${speciesId}`
-        );
-      setPokemonImg(res.data.sprites.front_default);
-      } catch (err) {
-        console.error("Error", err);
-      }
-    }
-
     useEffect(() => {
         fetchSpeciesOverview();
-        fetchPokemonImg();
     }, [speciesId]);
 
-    // error일 때 error 띄우기
+    // error UI
     if (error)
         return <div className="page-container text-red-500">{error}</div>;
 
-    // 로딩 UI
+    // species 없을 때 로딩 UI
     if (!species)
         return (
             <main className="page-container">
@@ -69,49 +45,57 @@ export default function SpeciesOverview() {
                         alt="로딩 중"
                         className="w-[10rem] drop-shadow-2xl animate-bounce"
                     />
-                    <span className="sr-only">포켓몬 정보를 불러오는 중입니다...</span>
+                    <span className="sr-only">
+                        포켓몬 정보를 불러오는 중입니다...
+                    </span>
                 </div>
             </main>
         );
+
+    // 있으면 렌더링
+    // 왜 여기에 해야 species가 있는거지? else 도없는데?
 
     // names.name 한국어
     const koreanName =
         species.names.find((n) => n.language.name === "ko")?.name ??
         species.names.find((n) => n.language.name === "en")?.name;
-        
+
+    // overview info 배열
+    const info = [
+        { label: "색", value: species.color.name },
+        { label: "형태", value: species.shape.name },
+        { label: "행복도", value: species.base_happiness },
+        {
+            label: "전설 여부",
+            value: species.is_legendary ? "전설 포켓몬" : "일반 포켓몬",
+        },
+        { label: "포켓몬", value: species.varieties }, // 배열
+    ];
+
     return (
         <main className="page-container">
-            <h1 className="text-3xl font-bold mb-2">
-                {koreanName} (#{species.id})
-                <img src={pokemonImg} alt="포켓몬 이미지" />
-            </h1>
-            <p className="text-gray-600 mb-4"> 색: {species.color.name}</p>
-            <p className="text-gray-600 mb-4"> 형태: {species.shape.name}</p>
-            <p className="text-gray-600 mb-4">
-                행복도: {species.base_happiness}
-            </p>
-            <p className="text-gray-600 mb-4">
-                전설 여부:{" "}
-                {species.is_legendary ? "전설 포켓몬" : "일반 포켓몬"}
-            </p>
+            <div className="w-2/3 border-2 border-[#183168] p-5 rounded-xl flex flex-col justify-center items-start gap-3">
+                <div className="text-base md:text-lg font-medium">
+                    No.{species.id}
+                </div>
+                <h1 className="text-xl md:text-3xl font-bold">{koreanName}</h1>
 
-            <h2 className="text-xl font-semibold mt-6 mb-2">
-                Forms (Varieties)
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-                {species.varieties.map((v, i) => (
-                    <div key={i} className="border rounded p-2">
-                        <p className="text-blue-600">{v.pokemon.name}</p>
+                {info.map((item, i) => (
+                    <div key={i} className="text-base md:text-lg font-bold">
+                        {item.label}:{" "}
+                        {item.label !== "포켓몬" ? (
+                            <span className="font-medium">{item.value}</span>
+                        ) : (
+                            <ul>
+                                {item.value.map((v, j) => (
+                                    <li className="font-medium" key={j}>{v.pokemon.name}</li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 ))}
-            </div>
-
-            <div className="mt-6">
-                <Link
-                    to={`/species/${speciesId}/pokemons`}
-                    className="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
-                >
-                    이 종의 포켓몬 보기 →
+                <Link to={`/species/${speciesId}/pokemons`} className="link mt-4 self-center">
+                    이 종의 포켓몬 보기
                 </Link>
             </div>
         </main>
