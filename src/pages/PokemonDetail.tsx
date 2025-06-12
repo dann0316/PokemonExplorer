@@ -17,14 +17,17 @@ const PokemonDetail = () => {
         { name: "Home", path: "/" },
         { name: "Species List", path: "/species" },
         {
+            // validation용 fallback 표시
             name: speciesName || `Species #${speciesId}`,
             path: `/species/${speciesId}`,
         },
         {
             name: "Pokemon List",
+            // validation용 fallback 표시
             path: `/species/${speciesId}/pokemons`,
         },
-        {
+        {   
+            // validation용 fallback 표시
             name: pokemonName || `Pokemon #${pokemonId}`,
             path: location.pathname,
         },

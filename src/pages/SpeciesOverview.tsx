@@ -18,6 +18,7 @@ const SpeciesOverview = () => {
         { name: "Home", path: "/" },
         { name: "Species List", path: "/species" },
         {
+            // validation용 fallback 표시
             name: speciesName || `Species #${speciesId}`,
             path: `/species/${speciesId}`,
         },
