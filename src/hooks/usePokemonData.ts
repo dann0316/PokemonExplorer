@@ -4,6 +4,9 @@ import type { PokemonDetailDataType } from "../types/pokemon.type";
 
 export const usePokemonData = (pokemonId?: string) => {
 
+    // 이미지 로딩 state
+    const [isLoading, setIsLoading] = useState(true);
+
     // pokemon data state
     const [pokemon, setPokemon] = useState<PokemonDetailDataType | null>(null);
 
@@ -28,5 +31,5 @@ export const usePokemonData = (pokemonId?: string) => {
         fetchPokemon();
     }, [pokemonId]);
 
-    return { pokemon, error };
+    return { pokemon, error, isLoading, setIsLoading };
 };

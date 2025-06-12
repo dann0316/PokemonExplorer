@@ -10,7 +10,8 @@ const PokemonDetail = () => {
 
     const { speciesName, pokemonName } = useName(speciesId, pokemonId);
 
-    const { pokemon, error } = usePokemonData(pokemonId);
+    const { pokemon, error, isLoading, setIsLoading } =
+        usePokemonData(pokemonId);
 
     const breadcrumbs = [
         { name: "Home", path: "/" },
@@ -80,7 +81,10 @@ const PokemonDetail = () => {
                             loading="lazy"
                             src={pokemon.sprites.front_default}
                             alt={pokemon.name}
-                            className="w-40 h-40"
+                            onLoad={() => setIsLoading(false)}
+                            className={`w-40 h-40 transition-opacity duration-500 ${
+                                isLoading ? "opacity-0" : "opacity-100"
+                            }`}
                         />
                         <ul className="text-lg space-y-2">
                             <li>키: {pokemonHeight} m</li>

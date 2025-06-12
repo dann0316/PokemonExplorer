@@ -51,12 +51,6 @@ const SpeciesOverview = () => {
             </div>
         );
 
-    // 있으면 렌더링
-    // 왜 여기에 해야 species가 있는거지? else 도없는데?
-
-    // pokeonDetail이랑 이 부분도 너무 똑같음 이것도 commonpage에 빼기 커스텀 훅 위치랑 구조도 너무 비슷한데;
-    // 커스텀 훅에 중복된 state도 좀 있는데 error 같은거
-
     // names.name 한국어로
     const koreanName =
         species.names.find((n) => n.language.name === "ko")?.name ??

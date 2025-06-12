@@ -18,7 +18,6 @@ export const useSpeicesListData = () => {
     // 포켓몬 종 불러오는 함수 limit 20, offset button 클릭 시 +20
     const fetchSpecies = async () => {
 
-        // 요청하면 loading state true
         setIsLoading(true);
 
         try {
