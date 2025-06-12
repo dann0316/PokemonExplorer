@@ -15,8 +15,13 @@ const SpeciesList = () => {
     // speciesList 못옴(error)
     if (error)
         return (
-            <div className="page-container text-red-500">
-                <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div className="container text-red-500">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 {error.message}
             </div>
         );
@@ -24,16 +29,25 @@ const SpeciesList = () => {
     // speciesList 오는 중(loading)
     if (!speciesList)
         return (
-            <>
-                <Breadcrumb breadcrumbs={breadcrumbs}/>
+            <div className="container">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 <LoadingUI />
-            </>
+            </div>
         );
 
     return (
         <div className="container">
-
-            <Breadcrumb breadcrumbs={breadcrumbs}/>
+            <div
+                aria-label="breadcrumb"
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+            >
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+            </div>
 
             <CommonListPage
                 title="포켓몬 종을 골라보아요 :)"
@@ -41,8 +55,8 @@ const SpeciesList = () => {
                 generateLink={(id) => `/species/${id}`}
                 showLoadMore={true}
                 onLoadMore={() => setOffset((prev) => prev + 20)}
-                isLoading={isLoading}/>
-
+                isLoading={isLoading}
+            />
         </div>
     );
 };

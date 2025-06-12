@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
+import type { BreadcrumbType } from "../types/pokemon.type";
 
-interface Crumb {
-    name: string;
-    path: string;
-}
-
-const Breadcrumb = ({ breadcrumbs }: { breadcrumbs: Crumb[] }) => {
+const Breadcrumb = ({ breadcrumbs }: { breadcrumbs: BreadcrumbType[] }) => {
 
     return (
-        <div aria-label="breadcrumb" className="overflow-x-auto">
-            <nav className="w-full flex flex-row justify-start items-center text-white text-sm md:text-base lg:text-lg font-semibold gap-1">
+        
+            <nav className="w-max flex flex-row justify-start items-center text-white text-sm md:text-base lg:text-lg font-semibold gap-1 whitespace-nowrap pb-2 px-2">
 
                 {/* breadcrumbs UI */}
                 {breadcrumbs.map((a, i) => {
@@ -45,7 +41,6 @@ const Breadcrumb = ({ breadcrumbs }: { breadcrumbs: Crumb[] }) => {
                     );
                 })}
             </nav>
-        </div>
     );
 };
 

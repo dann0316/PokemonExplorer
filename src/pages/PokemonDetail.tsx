@@ -36,8 +36,13 @@ const PokemonDetail = () => {
     // pokemon 못옴(error)
     if (error)
         return (
-            <div className="page-container text-red-500">
-                <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div className="container text-red-500">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 {error.message}
             </div>
         );
@@ -45,15 +50,26 @@ const PokemonDetail = () => {
     // species 오는 중(loading)
     if (!pokemon)
         return (
-            <>
-                <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div className="container">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 <LoadingUI />
-            </>
+            </div>
         );
 
     return (
         <div className="container">
-            <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div
+                aria-label="breadcrumb"
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+            >
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+            </div>
+
             <CommonOverviewPage
                 loading={!pokemon}
                 title={pokemon.name}

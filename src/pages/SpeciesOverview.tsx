@@ -19,25 +19,36 @@ const SpeciesOverview = () => {
         { name: "Species List", path: "/species" },
         {
             name: speciesName || `Species #${speciesId}`,
-            path: `/species/${speciesId}`
+            path: `/species/${speciesId}`,
         },
     ];
 
     // speceis 못옴(error)
     if (error)
         return (
-            <div className="page-container text-red-500">
-                <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div className="container text-red-500">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 {error.message}
             </div>
         );
 
     // species 오는 중(loading)
-    if (!species) return (
-            <>
-                <Breadcrumb breadcrumbs={breadcrumbs}/>
+    if (!species)
+        return (
+            <div className="container">
+                <div
+                    aria-label="breadcrumb"
+                    className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+                >
+                    <Breadcrumb breadcrumbs={breadcrumbs} />
+                </div>
                 <LoadingUI />
-            </>
+            </div>
         );
 
     // 있으면 렌더링
@@ -65,8 +76,12 @@ const SpeciesOverview = () => {
 
     return (
         <div className="container">
-
-            <Breadcrumb breadcrumbs={breadcrumbs} />
+            <div
+                aria-label="breadcrumb"
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+            >
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+            </div>
 
             <CommonOverviewPage
                 loading={!species}

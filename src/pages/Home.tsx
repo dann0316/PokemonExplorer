@@ -3,16 +3,18 @@ import bg from "../assets/bg.png";
 import Breadcrumb from "../components/Breadcrumb";
 
 const Home = () => {
-
     // breadcrumb 내부로
-    const breadcrumbs = [
-        { name: "Home", path: "/" },
-    ];
+    const breadcrumbs = [{ name: "Home", path: "/" }];
 
     return (
         <div className="container">
-
-            <Breadcrumb breadcrumbs={breadcrumbs} />
+            
+            <div
+                aria-label="breadcrumb"
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-[#183168] w-[60%]"
+            >
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+            </div>
 
             <main className="page-container pt-16">
                 {/* img section */}
