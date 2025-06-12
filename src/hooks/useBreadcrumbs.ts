@@ -1,7 +1,5 @@
-interface Breadcrumb {
-    name: string;
-    path: string;
-}
+// 전역 Breadcrumbs용 훅
+import type { BreadcrumbType } from "../types/pokemon.type";
 
 export const useBreadcrumbs = (
     pathnames: string[],
@@ -9,10 +7,10 @@ export const useBreadcrumbs = (
     pokemonId?: string,
     speciesName?: string,
     pokemonName?: string,
-): Breadcrumb[] => {
+): BreadcrumbType[] => {
 
     // breadcrumbs 처음 빈 배열
-    const breadcrumbs: Breadcrumb[] = [];
+    const breadcrumbs: BreadcrumbType[] = [];
 
     // pathnames 배열 아무것도 없으면
     if (pathnames.length === 0) {

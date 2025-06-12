@@ -2,26 +2,56 @@ import CommonListPage from "./commonPage/CommonListPage";
 import { useRouteData } from "../hooks/useRouteData";
 import { usePokemonListData } from "../hooks/usePokemonListData";
 import LoadingUI from "../components/LoadingUI";
+import Breadcrumb from "../components/Breadcrumb";
 
 const PokemonList = () => {
-
     const { speciesId } = useRouteData();
 
-    const { varietiesList, speciesName, error } = usePokemonListData( speciesId );
+    const { varietiesList, speciesName, error } = usePokemonListData(speciesId);
+
+    // breadcrumb 내부로
+    const breadcrumbs = [
+        { name: "Home", path: "/" },
+        { name: "Species List", path: "/species" },
+        {
+            name: speciesName || `Species #${speciesId}`,
+            path: `/species/${speciesId}`,
+        },
+        {
+            name: "Pokemon List",
+            path: `/species/${speciesId}/pokemons`,
+        },
+    ];
 
     // varietiesList 못옴(error)
     if (error)
-        return <div className="page-container text-red-500">{error.message}</div>;
+        return (
+            <div className="page-container text-red-500">
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+                {error.message}
+            </div>
+        );
 
     // varietiesList 오는 중(loading)
-    if (!varietiesList) return <LoadingUI />;
+    if (!varietiesList)
+        return (
+            <>
+                <Breadcrumb breadcrumbs={breadcrumbs} />
+                <LoadingUI />
+            </>
+        );
 
     return (
-        <CommonListPage
-            title={`${speciesName} 중 포켓몬을 골라보아요 :)`}
-            items={varietiesList.map((v) => v.pokemon)}
-            generateLink={(id) => `/species/${speciesId}/pokemons/${id}`}
-        />
+        <div className="container">
+
+            <Breadcrumb breadcrumbs={breadcrumbs} />
+            
+            <CommonListPage
+                title={`${speciesName} 중 포켓몬을 골라보아요 :)`}
+                items={varietiesList.map((v) => v.pokemon)}
+                generateLink={(id) => `/species/${speciesId}/pokemons/${id}`}
+            />
+        </div>
     );
 };
 

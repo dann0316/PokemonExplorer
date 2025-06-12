@@ -5,8 +5,8 @@ export const useName = (
     speciesId?: string,
     pokemonId?: string
 ) => {
-    const [speciesName, setSpeciesName] = useState("Which Species?");
-    const [pokemonName, setPokemonName] = useState("Which Pokemon?");
+    const [speciesName, setSpeciesName] = useState("");
+    const [pokemonName, setPokemonName] = useState("");
 
     useEffect(() => {
         const fetchSpeciesName = async () => {

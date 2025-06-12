@@ -6,8 +6,12 @@
   @apply bg-white text-[#183168] px-6 py-3 rounded-lg text-lg md:text-lg lg:text-2xl font-semibold border-[2px] border-[#183168] hover:bg-transparent hover:text-[#ffca00] hover:border-[#ffca00] transition-all duration-300;
 }
 
+.container {
+  @apply py-20 md:py-24 lg:py-36 flex flex-col justify-center items-center gap-5;
+}
+
 .page-container {
-  @apply w-screen h-auto py-40 px-10 md:py-52 lg:py-40 flex flex-col justify-start items-center gap-7 text-[#183168];
+  @apply w-screen h-auto px-10 flex flex-col justify-start items-center gap-7 text-[#183168];
 }
 
 .hover-apply {

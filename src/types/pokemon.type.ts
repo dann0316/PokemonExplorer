@@ -103,3 +103,9 @@ export interface VarietyInfo {
 
 export type SpeciesOverviewInfoType = StringInfo | NumberInfo | VarietyInfo;
 // SpeciesOverviewInfo Type 여기까지
+
+// useBreadcrumbs Type
+export interface BreadcrumbType {
+    name: string;
+    path: string;
+}

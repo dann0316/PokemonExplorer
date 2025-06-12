@@ -2,7 +2,7 @@ import bg from '../assets/bg.png'
 
 const LoadingUI = () => {
     return (
-        <main className="page-container">
+        <main className="page-container !h-screen">
                 <div role="status" aria-label="포켓몬 정보 로딩 중">
                     <img
                         loading="lazy"

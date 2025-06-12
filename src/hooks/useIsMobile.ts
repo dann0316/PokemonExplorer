@@ -1,3 +1,4 @@
+// 전역 breadcrumb 쓸 때 Header 구조 변경을 위한 훅
 import { useEffect, useState } from "react"
 
 const useIsMobile = () => {
