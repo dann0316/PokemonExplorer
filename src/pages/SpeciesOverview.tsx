@@ -7,6 +7,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import { useName } from "../hooks/useName";
 
 const SpeciesOverview = () => {
+    
     const { speciesId } = useRouteData();
 
     const { species, error } = useSpeciesOverviewData(speciesId);
