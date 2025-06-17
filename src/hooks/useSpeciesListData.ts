@@ -33,6 +33,7 @@ export const useSpeicesListData = () => {
             console.error("Error :", err);
 
             setError(err as Error);
+            
         } finally {
 
             setIsLoading(false);

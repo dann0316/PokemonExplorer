@@ -1,6 +1,12 @@
 # React + TypeScript + Vite
 # Tridge 사전 과제 (option1 - Data Breadcrumb (포켓몬 Explorer))
 
+* main branch는 최초 제출 당시 과제 / after-submit branch는 제출 이후, 코드 개선 및 리팩토링 진행한 버전 (참고용)
+
+* 주요 개선 사항: 
+
+- react-query 사용해 중복 요청, 캐싱 필요한 훅에 적용
+
 포켓몬 종과 포켓몬의 정보를 시각적으로 탐색할 수 있는 React기반 웹 앱
 PokeAPI를 기반으로 정보를 가져왔으며, Breadcrumb 탐색 구조와 타입별 분류 UI 제공
 
