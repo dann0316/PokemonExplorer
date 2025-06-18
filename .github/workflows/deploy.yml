@@ -1,0 +1,35 @@
+name: React CI/CD
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 push될 때만 실행
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🛠 Build Project
+        run: npm run build
+
+      - name: 🚀 Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: ./dist  # CRA는 build, Vite는 dist
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "GitHub Actions Deploy"
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
