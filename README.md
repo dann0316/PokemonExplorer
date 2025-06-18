@@ -7,7 +7,7 @@
 PokeAPI를 기반으로 정보를 가져왔으며, Breadcrumb 탐색 구조와 타입별 분류 UI 제공
 
 
-- 배포 URL: https://tridge-option1.vercel.app/
+- 배포 URL:
 
 
 - 기술 스택 : React, Typescript, Vite, Tailwind Css, Axios, PokeAPI
