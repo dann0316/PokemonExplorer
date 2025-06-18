@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Netlify에 배포
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v1.2.4
         with:
           publish-dir: ./dist
           production-branch: main
