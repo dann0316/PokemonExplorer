@@ -10,24 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: GitHub에서 코드 내려받기
         uses: actions/checkout@v3
 
-      - name: ⚙️ Setup Node.js
+      - name: Node 버전(18) 설치 및 설정
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 📦 Install Dependencies
+      - name: 의존성 패키지 설치
         run: npm ci
 
-      - name: 🛠 Build Project
+      - name: 빌드
         run: npm run build
 
-      - name: 🚀 Deploy to Netlify
+      - name: Netlify에 배포
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: ./dist  # CRA는 build, Vite는 dist
+          publish-dir: ./dist
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "GitHub Actions Deploy"
