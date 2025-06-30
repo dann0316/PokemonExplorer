@@ -1,4 +1,4 @@
-name: React CI/CD
+name: React CI/CD with Format, Lint, Deploy (Test아직)
 
 on:
   push:
@@ -31,5 +31,5 @@ jobs:
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "GitHub Actions Deploy"
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          # netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          # netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}

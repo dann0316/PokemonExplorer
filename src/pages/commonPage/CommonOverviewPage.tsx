@@ -27,7 +27,7 @@ const CommonOverviewPage = ({
 
     return (
         <main className="page-container">
-            <div className="w-full md:w-2/3 border-2 border-[#183168] p-5 rounded-xl flex flex-col gap-3">
+            <div className="w-full md:w-2/3 border-2 border-[#183168] p-5 rounded-xl flex flex-col justify-center items-center gap-3">
                 <div className="text-base md:text-lg font-medium">
                     No.{data.id}
                 </div>
