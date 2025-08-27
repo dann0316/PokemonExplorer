@@ -13,7 +13,13 @@ PokeAPI를 기반으로 정보를 가져왔으며, Breadcrumb 탐색 구조와 �
 - 기술 스택 : React, Typescript, Vite, Tailwind Css, Axios, PokeAPI
 
 
-# 폴더 구조:
+# 아키텍쳐 및 폴더 구조:
+
+> 레이어드 아키텍쳐 (Layered Architecure)
+
+: 역할별로 layer로 분리하여 각 layer의 관심사를 분리하여 유지보수성과 확장성을 높임
+
+> 폴더 구조
 
 src/
 
